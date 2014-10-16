@@ -37,16 +37,16 @@ gulp.task('serverLint', function(){
 });
 
 //Start nodemon server
-gulp.task('serve', function() {
+gulp.task('serve', ['serverUnitTests'], function() {
   nodemon({script: paths.mainServerAppFile, ignore: [paths.nodemonIgnoreFiles]})
-    .on('change', ['serverLint']);
+    .on('change', ['serverUnitTests']);
 });
 
 /*******************************************************
  *            Server Side Testing Tasks 
  ******************************************************/
 
-gulp.task('serverUnitTests', function(){
+gulp.task('serverUnitTests', ['serverLint'], function(){
   return gulp
     .src(paths.serverSideMochaTestFiles, {read: false})
     .pipe(mocha({reporter: 'min'}));
@@ -56,6 +56,4 @@ gulp.task('serverUnitTests', function(){
  *            Defined Task Groups
  ******************************************************/
 
-//Delete Ionic Platform Files
-gulp.task('serverBuildTasks', ['serverLint', 'serverUnitTests', 'serve']);
-gulp.task('default', ['serverBuildTasks']);
+gulp.task('default', ['serve']);

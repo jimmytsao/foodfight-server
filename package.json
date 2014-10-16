@@ -1,5 +1,5 @@
 {
-  "name": "Food Fight",
+  "name": "Food-Fight",
   "version": "0.0.1",
   "private": true,
   "description": "Food Fight Server Code",
@@ -23,6 +23,6 @@
   "dependencies": {
     "body-parser": "^1.6.2",
     "express": "^4.8.2",
-    "morgan": "^1.2.2",
+    "morgan": "^1.2.2"
   }
 }
