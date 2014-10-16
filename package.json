@@ -1,0 +1,28 @@
+{
+  "name": "Food Fight",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Food Fight Server Code",
+  "main": "server.js",
+  "scripts": {
+    "setup": ""
+  },
+  "keywords": [],
+  "author": "Jimmy Tsao",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^0.5.2",
+    "gulp-nodemon": "^1.0.4",
+    "jshint-stylish": "^0.4.0",
+    "mocha": "^1.21.4",
+    "supertest": "^0.13.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.6.2",
+    "express": "^4.8.2",
+    "morgan": "^1.2.2",
+  }
+}
