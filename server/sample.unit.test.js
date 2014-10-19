@@ -10,7 +10,7 @@ global.assert = chai.assert;
 
 describe('Sample Mocha Test', function () {
   it('Sample Test 1', function () {
-    expect(2).equal(1);
+    expect(1).equal(1);
   });
 });
 

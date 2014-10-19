@@ -4,15 +4,18 @@ var gulp          = require('gulp');
 var jshint        = require('gulp-jshint');
 var nodemon       = require('gulp-nodemon');
 var mocha         = require('gulp-mocha');
-
+var istanbul      = require('gulp-istanbul');
 /*******************************************************
  *            File Paths and Values
  ******************************************************/
 
 var paths = {
 
-  //Server side scripts
+  //All server side scripts
   serverScripts: ['server.js', 'server/**/*.js'],
+
+  //All server side scripts except test scripts
+  nonTestScripts: ['server.js', 'server/**/*.js', '!server/**/*.unit.test.js'],
 
   //Main server side js file 
   mainServerAppFile: 'server.js',
@@ -25,7 +28,7 @@ var paths = {
 };
 
 /*******************************************************
- *            Server Side Build Tasks 
+ *                Tasks
  ******************************************************/
 
 //Lint files with jshint
@@ -42,8 +45,9 @@ gulp.task('serve', ['serverUnitTests'], function() {
     .on('change', ['serverUnitTests']);
 });
 
+
 /*******************************************************
- *            Server Side Testing Tasks 
+ *            Testing Tasks
  ******************************************************/
 
 gulp.task('serverUnitTests', ['serverLint'], function(){
@@ -52,9 +56,22 @@ gulp.task('serverUnitTests', ['serverLint'], function(){
     .pipe(mocha({reporter: 'min'}));
 });
 
+//Istanbul code coverage
+gulp.task('coverage', ['serverLint'], function (cb) {
+  gulp.src(paths.nonTestScripts)
+    .pipe(istanbul({includeUntested: true})) // Includes all files listed in src
+    .on('finish', function () {
+      gulp.src(paths.serverSideMochaTestFiles, {read: false})
+        .pipe(mocha({reporter: 'min'}))
+        .pipe(istanbul.writeReports({
+            reporters: [ 'lcov', 'text', 'text-summary'],
+          }))
+        .on('end', cb);
+    });
+});
 /*******************************************************
  *            Defined Task Groups
  ******************************************************/
 
-gulp.task('test', ['serverUnitTests']);
+gulp.task('test', ['coverage']);
 gulp.task('default', ['serve']);
