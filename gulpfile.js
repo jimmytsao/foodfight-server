@@ -56,4 +56,5 @@ gulp.task('serverUnitTests', ['serverLint'], function(){
  *            Defined Task Groups
  ******************************************************/
 
+gulp.task('test', ['serverUnitTests']);
 gulp.task('default', ['serve']);

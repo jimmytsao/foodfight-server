@@ -5,7 +5,7 @@
   "description": "Food Fight Server Code",
   "main": "server.js",
   "scripts": {
-    "setup": ""
+    "test": "gulp test"
   },
   "keywords": [],
   "author": "Jimmy Tsao",
