@@ -5,6 +5,9 @@ var jshint        = require('gulp-jshint');
 var nodemon       = require('gulp-nodemon');
 var mocha         = require('gulp-mocha');
 var istanbul      = require('gulp-istanbul');
+var coveralls     = require('gulp-coveralls');
+
+
 /*******************************************************
  *            File Paths and Values
  ******************************************************/
@@ -68,6 +71,12 @@ gulp.task('coverage', ['serverLint'], function (cb) {
           }))
         .on('end', cb);
     });
+});
+
+//Upload results to coveralls
+gulp.task('coveralls', function(){
+  gulp.src('coverage/lcov.info')
+    .pipe(coveralls());
 });
 /*******************************************************
  *            Defined Task Groups

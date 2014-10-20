@@ -6,3 +6,6 @@ node_js:
 before_script:
 
 script: 
+
+after_script:
+  - 'gulp coveralls'
