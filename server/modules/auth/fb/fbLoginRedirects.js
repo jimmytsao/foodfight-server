@@ -6,7 +6,6 @@ var loginUrlWithParameters = [
   '?client_id=',
   ,fbConstants.clientId,
   '&display=popup',
-  '&scope=user_photos',
   '&redirect_uri='].join('');
 
 module.exports = {
