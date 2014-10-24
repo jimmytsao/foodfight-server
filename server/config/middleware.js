@@ -12,9 +12,8 @@ function middlewareConfig (app, express) {
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
+  app.use(express.static(__dirname + '/../../public'));
 
   app.use('/auth', authRouters); 
-  // app.use(express.static(__dirname + '/../../client/ionic/www'));
-
   require('../modules/auth/authHandling.js')(authRouters, express);
 }
